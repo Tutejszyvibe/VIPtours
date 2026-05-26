@@ -1,61 +1,161 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <title>Tutéjszy Vibe – Wroclaw Hidden Tours</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tutéjszy Vibe — Gonzo Walks & Living Wrocław</title>
+  <meta name="description" content="Tutéjszy Vibe — autorskie spacery, gonzo-journalism, lokalne trasy i doświadczenie Living Wrocław. Nadodrze, Ołbin, Karłowice, Osobowice." />
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
-      line-height: 1.6;
+    :root{
+      --bg:#12100d;
+      --bg2:#1d1711;
+      --paper:#f2dfbd;
+      --cream:#fff5e3;
+      --muted:#cbb99c;
+      --muted2:#9f8e74;
+      --orange:#e86b26;
+      --gold:#d8a441;
+      --green:#76885b;
+      --dark:#21160d;
+      --line:rgba(255,245,227,.15);
+      --soft:rgba(255,245,227,.065);
+      --shadow:0 28px 90px rgba(0,0,0,.42);
     }
-    h1, h2 {
-      color: #2c3e50;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:
+        radial-gradient(circle at 10% -5%,rgba(232,107,38,.30),transparent 34%),
+        radial-gradient(circle at 85% 8%,rgba(216,164,65,.14),transparent 30%),
+        linear-gradient(180deg,var(--bg),#0e0c09 66%);
+      color:var(--cream);
+      line-height:1.5;
     }
-    .offer {
-      margin-bottom: 40px;
-    }
-    .contact {
-      margin-top: 40px;
-    }
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(1120px,calc(100% - 32px));margin:0 auto}
+    .topbar{position:sticky;top:0;z-index:30;background:rgba(14,12,9,.78);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:950;letter-spacing:.01em}
+    .sun{width:36px;height:36px;border-radius:50%;background:conic-gradient(from 210deg,#e86b26,#f2c25b,#74885a,#345f96,#e86b26);border:2px solid var(--cream);box-shadow:0 0 0 5px rgba(255,245,227,.08)}
+    .navlinks{display:flex;gap:18px;color:var(--muted);font-size:14px}
+    .navlinks a:hover{color:var(--cream)}
+    .lang-switch{display:flex;gap:6px;margin-left:auto}
+    .lang-switch button{cursor:pointer;border:1px solid var(--line);background:rgba(255,245,227,.05);color:var(--muted);border-radius:999px;padding:7px 10px;font-weight:800}
+    .lang-switch button.active{background:var(--cream);color:#16100b}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 18px;border-radius:999px;background:var(--orange);color:#170d06;font-weight:950;border:1px solid rgba(255,255,255,.18);box-shadow:0 15px 38px rgba(232,107,38,.26);transition:.2s;white-space:nowrap}
+    .btn:hover{transform:translateY(-2px);background:#ff7b2e}
+    .btn.secondary{background:transparent;color:var(--cream);border:1px solid var(--line);box-shadow:none}
+    .btn.gold{background:var(--gold);color:#1b1208}
+    .hero{padding:70px 0 46px}
+    .hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:44px;align-items:center}
+    .kicker{color:var(--gold);text-transform:uppercase;letter-spacing:.18em;font-size:13px;font-weight:950}
+    h1{font-size:clamp(42px,7vw,82px);line-height:.9;margin:14px 0 20px;letter-spacing:-.06em}
+    .lead{font-size:clamp(18px,2.2vw,24px);color:#eadcc6;max-width:740px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+    .quiet-note{margin-top:16px;color:var(--muted);font-size:14px;max-width:720px}
+    .hero-visual{min-height:560px;border-radius:36px;padding:28px;position:relative;overflow:hidden;border:1px solid rgba(255,245,227,.2);box-shadow:var(--shadow);background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.58)),radial-gradient(circle at 25% 18%,rgba(255,245,227,.32),transparent 18%),linear-gradient(135deg,#d76325 0%,#83512a 38%,#17110c 100%)}
+    .hero-visual:before{content:"";position:absolute;inset:22px;border:2px solid rgba(255,245,227,.68);border-radius:26px}
+    .hero-visual:after{content:"";position:absolute;width:420px;height:420px;border-radius:50%;right:-160px;bottom:-150px;background:rgba(255,245,227,.12)}
+    .hero-visual-content{position:relative;z-index:1;min-height:504px;display:flex;flex-direction:column;justify-content:space-between}
+    .badge{display:inline-flex;width:max-content;padding:8px 12px;border-radius:999px;background:rgba(255,245,227,.16);border:1px solid rgba(255,245,227,.28);font-size:13px;font-weight:900}
+    .poster-title{font-size:56px;line-height:.88;text-transform:uppercase;letter-spacing:-.055em;margin:0}
+    .poster-text{max-width:380px;color:var(--paper);font-size:18px}
+    section{padding:58px 0}
+    .section-title{font-size:clamp(32px,4vw,56px);line-height:1;margin:0 0 16px;letter-spacing:-.045em}
+    .section-sub{font-size:18px;color:var(--muted);max-width:820px;margin:0 0 28px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .card{background:var(--soft);border:1px solid var(--line);border-radius:28px;padding:24px}
+    .card h3{font-size:24px;line-height:1.05;margin:10px 0 10px}.card p{color:var(--muted);margin:0}.icon{font-size:31px}
+    .manifesto{display:grid;grid-template-columns:.85fr 1.15fr;gap:20px;align-items:stretch}
+    .paper{background:linear-gradient(180deg,var(--paper),#e8cfaa);color:var(--dark);border-radius:34px;padding:30px;box-shadow:var(--shadow)}
+    .paper p{color:#4d3b29}.paper .section-title{color:#1b120b}
+    .quote{font-size:clamp(28px,4vw,48px);line-height:1.02;letter-spacing:-.045em;font-weight:950;margin:0}
+    .offers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:stretch}
+    .offer{background:rgba(255,245,227,.075);border:1px solid var(--line);border-radius:30px;padding:25px;display:flex;flex-direction:column;min-height:100%}
+    .offer.featured{background:linear-gradient(180deg,var(--paper),#e8cfa3);color:var(--dark);border:0;box-shadow:var(--shadow)}
+    .offer.featured p,.offer.featured li,.offer.featured .mini{color:#4a3926}.offer h3{font-size:31px;line-height:.98;margin:12px 0}.price{font-size:34px;font-weight:950;color:var(--orange);margin:18px 0 4px;letter-spacing:-.04em}.offer.featured .price{color:#b64b14}.mini{color:var(--muted);font-size:14px}.small-title{font-size:13px;text-transform:uppercase;letter-spacing:.16em;color:var(--gold);font-weight:950;margin:0 0 10px}.list{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:11px}.list li{display:flex;gap:10px;color:var(--muted)}.check{font-weight:950;color:var(--gold)}.offer.featured .check{color:var(--green)}.offer .btn{margin-top:auto}
+    .flow{display:grid;gap:12px}.step{display:grid;grid-template-columns:54px 1fr;gap:14px;align-items:start;padding:16px;border-radius:24px;border:1px solid var(--line);background:rgba(255,245,227,.055)}.num{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--orange);color:#150b06;font-weight:950}.step h4{margin:0 0 4px;font-size:19px}.step p{margin:0;color:var(--muted)}
+    .about{display:grid;grid-template-columns:.78fr 1.22fr;gap:20px;align-items:center}.avatar{min-height:340px;border-radius:32px;background:linear-gradient(135deg,rgba(232,107,38,.92),rgba(255,245,227,.13));border:1px solid var(--line);display:flex;align-items:flex-end;padding:25px}.avatar span{font-size:52px;font-weight:950;line-height:.9;letter-spacing:-.055em}.pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.pill{padding:9px 12px;border-radius:999px;border:1px solid var(--line);background:rgba(255,245,227,.05);font-weight:800;color:var(--cream)}.paper .pill{border-color:rgba(0,0,0,.12);background:rgba(255,255,255,.35);color:var(--dark)}
+    .contact{padding:38px;border-radius:36px;text-align:center;background:linear-gradient(135deg,rgba(232,107,38,.24),rgba(216,164,65,.12),rgba(255,245,227,.06));border:1px solid rgba(255,245,227,.2)}.contact h2{font-size:clamp(34px,5vw,62px);line-height:1;margin:0 0 12px;letter-spacing:-.05em}.contact p{max-width:780px;color:var(--muted);margin:0 auto 24px;font-size:18px}.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px;text-align:left}.contact-item{border:1px solid var(--line);background:rgba(255,245,227,.055);border-radius:22px;padding:16px}.contact-item strong{display:block;margin-bottom:4px}.contact-item span{color:var(--muted);font-size:14px}
+    .footer{padding:30px 0;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+    [data-lang]{display:none}[data-lang].active{display:block}
+    @media(max-width:920px){.hero-grid,.manifesto,.about{grid-template-columns:1fr}.offers,.grid-3,.contact-grid{grid-template-columns:1fr}.navlinks{display:none}.hero{padding-top:44px}.hero-visual{min-height:430px}.hero-visual-content{min-height:374px}.poster-title{font-size:42px}.lang-switch{margin-left:0}.nav{flex-wrap:wrap}.brand{margin-right:auto}}
   </style>
 </head>
 <body>
-  <h1>Tutéjszy Vibe – Wrocław Hidden Tours</h1>
-  <p>Poznaj miasto oczami jego mieszkańca. Nasze spacery i doświadczenia zabiorą Cię poza typowe ścieżki turystyczne do serca Nadodrza, Ołbina i innych dzielnic.</p>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a href="#top" class="brand"><span class="sun"></span><span>Tutéjszy Vibe</span></a>
+      <nav class="navlinks">
+        <a href="#idea" data-t="nav_idea">Idea</a><a href="#offers" data-t="nav_offers">Oferty</a><a href="#about" data-t="nav_about">O mnie</a><a href="#contact" data-t="nav_contact">Kontakt</a>
+      </nav>
+      <div class="lang-switch" aria-label="Language switcher">
+        <button class="active" data-set-lang="pl">PL</button><button data-set-lang="en">EN</button><button data-set-lang="ru">RU</button>
+      </div>
+      <a class="btn" href="https://t.me/hlbtyr" target="_blank" rel="noreferrer" data-t="nav_cta">Napisz</a>
+    </div>
+  </header>
 
-  <h2>Wycieczki Grupowe / Group Tours</h2>
-  <div class="offer">
-    <p><strong>Każda sobota</strong> – Nadodrze, Ołbin, Karłowice, Osobowice (rowerowa). Limit 10 osób. Cena: <strong>150&nbsp;zł</strong> za osobę.</p>
-    <p><em>Every Saturday</em> – Explore Nadodrze, Ołbin, Karłowice and Osobowice by bike. Limited to 10 participants. <strong>150&nbsp;zł</strong> per person.</p>
-    <p><em>Каждую субботу</em> – Небольшие группы до 10 человек исследуют районы Вроцлава. Цена: <strong>150&nbsp;злотых</strong> с человека.</p>
-  </div>
+  <main id="top">
+    <div data-lang="pl" class="active">
+      <section class="hero">
+        <div class="wrap hero-grid">
+          <div>
+            <div class="kicker">Gonzo spacery · miasto od środka · Wrocław</div>
+            <h1>To nie jest wycieczka. To wejście w ukryte warstwy miasta.</h1>
+            <p class="lead">Tutéjszy Vibe to autorski projekt o Wrocławiu widzianym oczami mieszkańca, reportera i obserwatora. Chodzimy po Nadodrzu, Ołbinie, Karłowicach i Osobowicach, rozmawiamy o historii, wojnie, sztuce, codzienności i przyszłości miasta.</p>
+            <div class="hero-actions"><a class="btn gold" href="#offers">Zobacz formaty</a><a class="btn secondary" href="#contact">Napisz do mnie</a></div>
+            <p class="quiet-note">Bez pośpiechu. Bez turystycznej checklisty. Zamiast tego: spacer, rozmowa, lokalne miejsca, detale i atmosfera.</p>
+          </div>
+          <div class="hero-visual"><div class="hero-visual-content"><span class="badge">Nadodrze · Ołbin · Karłowice · Osobowice</span><div><h2 class="poster-title">Live the city.<br/>Don’t just visit.</h2><p class="poster-text">Miasto widziane przez bramy, podwórka, murale, kawiarnie, rozmowy i ślady czasu.</p></div></div></div>
+        </div>
+      </section>
+      <section id="idea"><div class="wrap manifesto"><div class="paper"><p class="quote">Nie oprowadzam po mieście. Pokazuję sposób patrzenia.</p><p>To projekt na styku spaceru, reportażu, miejskiej antropologii, fotografii i osobistego doświadczenia emigranta.</p></div><div class="card"><h2 class="section-title">O co chodzi?</h2><p class="section-sub">W klasycznej wycieczce ktoś pokazuje „najważniejsze punkty”. Tutaj interesują mnie miejsca, które mówią ciszej: podwórka, klatki schodowe, ślady niemieckiego Breslau, powojenne przesiedlenia, murale, lokalne bary i momenty, w których miasto odsłania swoją prawdziwą strukturę.</p><div class="grid-3"><div><strong>🏚 Ukryte miejsca</strong><p>Nieoczywiste trasy i mikrohistorie.</p></div><div><strong>🎙 Gonzo narracja</strong><p>Subiektywne spojrzenie autora.</p></div><div><strong>☕ Lokalny rytm</strong><p>Kawa, rozmowy i codzienne życie.</p></div></div></div></div></section>
+      <section><div class="wrap"><h2 class="section-title">Co robimy podczas spaceru?</h2><p class="section-sub">Nie biegamy od punktu do punktu. Idziemy przez miasto jak przez żywy tekst: czytamy architekturę, sztukę, ślady historii i zachowania ludzi.</p><div class="grid-3"><div class="card"><div class="icon">🏚️</div><h3>Podwórka i kamienice</h3><p>Bramy, detale, zapomniane przestrzenie i powojenne warstwy Wrocławia.</p></div><div class="card"><div class="icon">🎨</div><h3>Street art i murale</h3><p>Rozmowy o sztuce, pamięci, rewitalizacji i miejskiej energii.</p></div><div class="card"><div class="icon">🧭</div><h3>Miasto jako opowieść</h3><p>Historia, wojna, migracje, lokalna tożsamość i przyszłość Wrocławia.</p></div></div></div></section>
+      <section id="offers"><div class="wrap"><h2 class="section-title">Formaty</h2><p class="section-sub">Możesz dołączyć do kameralnego spaceru, zamówić prywatną trasę albo wejść w pełne doświadczenie Living Wrocław.</p><div class="offers"><article class="offer"><div class="small-title">Model 1</div><h3>Wycieczki grupowe</h3><p class="mini">Każda sobota · limit 10 osób</p><div class="price">150 zł <span class="mini">/ osoba</span></div><ul class="list"><li><span class="check">✓</span><span>Nadodrze</span></li><li><span class="check">✓</span><span>Ołbin</span></li><li><span class="check">✓</span><span>Karłowice</span></li><li><span class="check">✓</span><span>Osobowice — wersja rowerowa</span></li><li><span class="check">✓</span><span>Kameralna grupa i żywa rozmowa</span></li></ul><a class="btn secondary" href="https://t.me/hlbtyr" target="_blank" rel="noreferrer">Zapytaj o termin</a></article><article class="offer"><div class="small-title">Model 2</div><h3>Wycieczki prywatne</h3><p class="mini">1–2 osoby · 3–4 godziny · indywidualna trasa</p><div class="price">500–700 zł <span class="mini">/ grupa</span></div><ul class="list"><li><span class="check">✓</span><span>Trasa dopasowana do Ciebie</span></li><li><span class="check">✓</span><span>Zdjęcia i punkty do fotografii</span></li><li><span class="check">✓</span><span>Rekomendacje kawiarni i barów</span></li><li><span class="check">✓</span><span>Historia, architektura, street art</span></li><li><span class="check">✓</span><span>Format rozmowy, nie skryptu</span></li></ul><a class="btn secondary" href="https://t.me/hlbtyr" target="_blank" rel="noreferrer">Zarezerwuj prywatnie</a></article><article class="offer featured"><div class="small-title">Model 3 · Premium</div><h3>Living Wrocław</h3><p class="mini">„Zamieszkaj na chwilę we Wrocławiu jak lokalny mieszkaniec.”</p><div class="price">300–500 € <span class="mini">/ doświadczenie</span></div><ul class="list"><li><span class="check">✓</span><span>2–3 dni wspólnego odkrywania miasta</span></li><li><span class="check">✓</span><span>Spacery, rozmowy i lokalne miejsca</span></li><li><span class="check">✓</span><span>Aplikacja Tutéjszy Vibe</span></li><li><span class="check">✓</span><span>Plakat na pamiątkę</span></li><li><span class="check">✓</span><span>Dla nomadów, fotografów i gości Airbnb</span></li></ul><a class="btn" href="https://t.me/hlbtyr" target="_blank" rel="noreferrer">Chcę Living Wrocław</a></article></div></div></section>
+      <section><div class="wrap manifesto"><div class="card"><h2 class="section-title">Jak wygląda Living Wrocław?</h2><p class="section-sub">To nie jest hotelowa atrakcja. To wspólne miejskie doświadczenie: pracujesz, odpoczywasz, wychodzimy na spacery, siadamy w lokalnych miejscach, rozmawiamy o tym, jak żyje Wrocław i jak zmienia się miasto.</p><div class="pills"><span class="pill">cyfrowi nomadzi</span><span class="pill">fotografowie</span><span class="pill">goście Airbnb</span><span class="pill">urban explorers</span></div></div><div class="flow"><div class="step"><div class="num">1</div><div><h4>Ustalamy klimat</h4><p>Historia, sztuka, fotografia, kawiarnie, wojna, architektura albo życie lokalne.</p></div></div><div class="step"><div class="num">2</div><div><h4>Idziemy w miasto</h4><p>Nadodrze, Ołbin, Karłowice, Osobowice — pieszo albo rowerem.</p></div></div><div class="step"><div class="num">3</div><div><h4>Zbierasz własną opowieść</h4><p>Dostajesz nie tylko trasę, ale wspomnienie, zdjęcia, rekomendacje i plakat.</p></div></div></div></div></section>
+      <section id="about"><div class="wrap about"><div class="avatar"><span>Pavel<br/>K.</span></div><div class="card"><h2 class="section-title">O mnie</h2><p class="section-sub">Nazywam się Pavel Kokhnovich. Jestem autorem i founderem Tutéjszy Vibe, przedsiębiorcą, trenerem teorii gier i pokera, gonzo-journalistą, miejskim obserwatorem i storytellerem.</p><p class="section-sub">Od ponad 5 lat mieszkam we Wrocławiu. Patrzę na miasto przez architekturę, migracje, sztukę uliczną, lokalne historie i codzienne napięcie między przeszłością a przyszłością. Tutéjszy Vibe to mój sposób badania Wrocławia — przez spacer, rozmowę, fotografię, aplikację i osobiste doświadczenie.</p><div class="pills"><span class="pill">🇵🇱 Polski</span><span class="pill">🇬🇧 English</span><span class="pill">🇷🇺 Русский</span><span class="pill">🇧🇾 Беларуская</span></div></div></div></section>
+      <section id="contact"><div class="wrap contact"><h2>Chcesz wejść głębiej w Wrocław?</h2><p>Napisz, jaki format Cię interesuje: spacer grupowy, prywatna trasa czy Living Wrocław. Dobiorę trasę, język i rytm pod Ciebie.</p><div class="hero-actions" style="justify-content:center;margin-top:0"><a class="btn gold" href="https://t.me/hlbtyr" target="_blank" rel="noreferrer">Telegram @hlbtyr</a><a class="btn secondary" href="https://instagram.com/tutejszyvibe" target="_blank" rel="noreferrer">Instagram @tutejszyvibe</a></div><div class="contact-grid"><div class="contact-item"><strong>Formaty</strong><span>Grupowy / prywatny / premium</span></div><div class="contact-item"><strong>Miasto</strong><span>Wrocław: Nadodrze, Ołbin, Karłowice, Osobowice</span></div><div class="contact-item"><strong>Języki</strong><span>PL / EN / RU / BY</span></div></div></div></section>
+    </div>
 
-  <h2>Wycieczki Prywatne / Private Tours</h2>
-  <div class="offer">
-    <p>Indywidualny spacer 1–2 osoby, 3–4 godziny. Dedykowana trasa, zdjęcia, rekomendacje kawiarni. Cena: <strong>500–700&nbsp;zł</strong> za grupę.</p>
-    <p><em>Private walk for 1–2 people</em>, 3–4 hours. Tailor‑made route, photos and café recommendations. <strong>500–700&nbsp;zł</strong> per group.</p>
-    <p><em>Приватная прогулка</em> на 1–2 человека длится 3–4 часа. Индивидуальный маршрут, фотографии, советы по местным заведениям. Цена: <strong>500–700&nbsp;зл</strong> за группу.</p>
-  </div>
+    <div data-lang="en">
+      <section class="hero"><div class="wrap hero-grid"><div><div class="kicker">Gonzo walks · local life · Wrocław</div><h1>This is not a tour. It is a way of entering the city.</h1><p class="lead">Tutéjszy Vibe is an author-led project about Wrocław seen through the eyes of a resident, observer and gonzo journalist. We walk through Nadodrze, Ołbin, Karłowice and Osobowice, talking about history, war, art, daily life and the future of the city.</p><div class="hero-actions"><a class="btn gold" href="#offers">See formats</a><a class="btn secondary" href="#contact">Contact me</a></div><p class="quiet-note">No rush. No tourist checklist. Just walking, conversation, local places, details and atmosphere.</p></div><div class="hero-visual"><div class="hero-visual-content"><span class="badge">Nadodrze · Ołbin · Karłowice · Osobowice</span><div><h2 class="poster-title">Live the city.<br/>Don’t just visit.</h2><p class="poster-text">A city seen through gates, courtyards, murals, cafés, conversations and traces of time.</p></div></div></div></div></section>
+      <section id="idea-en"><div class="wrap manifesto"><div class="paper"><p class="quote">I don’t simply guide you through the city. I show you a way of looking.</p><p>A project between walking, reportage, urban anthropology, photography and personal immigrant experience.</p></div><div class="card"><h2 class="section-title">The idea</h2><p class="section-sub">A standard tour shows “important points”. I am interested in places that speak quietly: courtyards, staircases, traces of German Breslau, post-war resettlement, murals, local bars and moments where the city reveals its true structure.</p><div class="grid-3"><div><strong>🏚 Hidden places</strong><p>Unexpected routes and micro-histories.</p></div><div><strong>🎙 Gonzo narrative</strong><p>The author’s subjective perspective.</p></div><div><strong>☕ Local rhythm</strong><p>Coffee, conversations and everyday life.</p></div></div></div></div></section>
+      <section><div class="wrap"><h2 class="section-title">What happens during the walk?</h2><p class="section-sub">We do not run from point to point. We read the city like a living text: architecture, art, historical traces and the way people inhabit space.</p><div class="grid-3"><div class="card"><div class="icon">🏚️</div><h3>Courtyards and buildings</h3><p>Gates, details, forgotten spaces and post-war layers of Wrocław.</p></div><div class="card"><div class="icon">🎨</div><h3>Street art and murals</h3><p>Conversations about art, memory, revitalization and urban energy.</p></div><div class="card"><div class="icon">🧭</div><h3>The city as a story</h3><p>History, war, migration, local identity and the future of Wrocław.</p></div></div></div></section>
+      <section id="offers-en"><div class="wrap"><h2 class="section-title">Formats</h2><p class="section-sub">Join a small group walk, book a private route or enter the full Living Wrocław experience.</p><div class="offers"><article class="offer"><div class="small-title">Model 1</div><h3>Group walks</h3><p class="mini">Every Saturday · limit 10 people</p><div class="price">150 PLN <span class="mini">/ person</span></div><ul class="list"><li><span class="check">✓</span><span>Nadodrze</span></li><li><span class="check">✓</span><span>Ołbin</span></li><li><span class="check">✓</span><span>Karłowice</span></li><li><span class="check">✓</span><span>Osobowice — bicycle version</span></li><li><span class="check">✓</span><span>Small group and live conversation</span></li></ul><a class="btn secondary" href="https://t.me/hlbtyr" target="_blank" rel="noreferrer">Ask about dates</a></article><article class="offer"><div class="small-title">Model 2</div><h3>Private walks</h3><p class="mini">1–2 people · 3–4 hours · individual route</p><div class="price">500–700 PLN <span class="mini">/ group</span></div><ul class="list"><li><span class="check">✓</span><span>Route adapted to you</span></li><li><span class="check">✓</span><span>Photos and best visual spots</span></li><li><span class="check">✓</span><span>Café and bar recommendations</span></li><li><span class="check">✓</span><span>History, architecture and street art</span></li><li><span class="check">✓</span><span>A conversation, not a script</span></li></ul><a class="btn secondary" href="https://t.me/hlbtyr" target="_blank" rel="noreferrer">Book private walk</a></article><article class="offer featured"><div class="small-title">Model 3 · Premium</div><h3>Living Wrocław</h3><p class="mini">“Live in Wrocław for a moment like a local.”</p><div class="price">300–500 € <span class="mini">/ experience</span></div><ul class="list"><li><span class="check">✓</span><span>2–3 days of exploring the city together</span></li><li><span class="check">✓</span><span>Walks, conversations and local places</span></li><li><span class="check">✓</span><span>Tutéjszy Vibe app</span></li><li><span class="check">✓</span><span>Poster as a memory</span></li><li><span class="check">✓</span><span>For nomads, photographers and Airbnb guests</span></li></ul><a class="btn" href="https://t.me/hlbtyr" target="_blank" rel="noreferrer">I want Living Wrocław</a></article></div></div></section>
+      <section id="about-en"><div class="wrap about"><div class="avatar"><span>Pavel<br/>K.</span></div><div class="card"><h2 class="section-title">About me</h2><p class="section-sub">My name is Pavel Kokhnovich. I am the author and founder of Tutéjszy Vibe, an entrepreneur, game theory and poker coach, gonzo journalist, urban observer and storyteller.</p><p class="section-sub">For more than 5 years I have been living in Wrocław. I look at the city through architecture, migration, street art, local stories and the tension between past and future. Tutéjszy Vibe is my way of researching Wrocław — through walking, conversation, photography, an app and personal experience.</p><div class="pills"><span class="pill">🇵🇱 Polish</span><span class="pill">🇬🇧 English</span><span class="pill">🇷🇺 Russian</span><span class="pill">🇧🇾 Belarusian</span></div></div></div></section>
+      <section id="contact-en"><div class="wrap contact"><h2>Want to experience Wrocław from the inside?</h2><p>Write to me and tell me which format you want: group walk, private route or Living Wrocław. I’ll adapt the route, language and rhythm to you.</p><div class="hero-actions" style="justify-content:center;margin-top:0"><a class="btn gold" href="https://t.me/hlbtyr" target="_blank" rel="noreferrer">Telegram @hlbtyr</a><a class="btn secondary" href="https://instagram.com/tutejszyvibe" target="_blank" rel="noreferrer">Instagram @tutejszyvibe</a></div></div></section>
+    </div>
 
-  <h2>Pakiet Premium „Living Wrocław”</h2>
-  <div class="offer">
-    <p>Żyj jak lokalny mieszkaniec. 3–4 dni pobytu, wspólne odkrywanie miasta, ukryte miejsca, kawiarnie, street art, filozofia miasta, aplikacja Tutéjszy Vibe i plakat na pamiątkę. Cena: <strong>300–500&nbsp;€</strong>.</p>
-    <p><em>Live like a local</em>. Stay 3–4 days, explore hidden places, cafés, street art and the philosophy of Wrocław with us. Includes the Tutéjszy Vibe app and a souvenir poster. <strong>300–500&nbsp;€</strong>.</p>
-    <p><em>Живи как местный</em>. Проживание 3–4 дня вместе, прогулки, скрытые места, уличное искусство, философия города, приложение Tutéjszy Vibe и постер в подарок. Стоимость: <strong>300–500&nbsp;€</strong>.</p>
-  </div>
+    <div data-lang="ru">
+      <section class="hero"><div class="wrap hero-grid"><div><div class="kicker">Гонзо-прогулки · город изнутри · Вроцлав</div><h1>Это не экскурсия. Это способ войти в город.</h1><p class="lead">Tutéjszy Vibe — авторский проект о Вроцлаве глазами жителя, наблюдателя и гонзо-журналиста. Мы идём через Nadodrze, Ołbin, Karłowice и Osobowice, говорим об истории, войне, искусстве, повседневности и будущем города.</p><div class="hero-actions"><a class="btn gold" href="#offers">Смотреть форматы</a><a class="btn secondary" href="#contact">Написать мне</a></div><p class="quiet-note">Без спешки. Без туристического чек-листа. Вместо этого — прогулка, разговор, локальные места, детали и атмосфера.</p></div><div class="hero-visual"><div class="hero-visual-content"><span class="badge">Nadodrze · Ołbin · Karłowice · Osobowice</span><div><h2 class="poster-title">Live the city.<br/>Don’t just visit.</h2><p class="poster-text">Город через дворы, ворота, муралы, кафе, разговоры и следы времени.</p></div></div></div></div></section>
+      <section id="idea-ru"><div class="wrap manifesto"><div class="paper"><p class="quote">Я не просто провожу по городу. Я показываю способ смотреть.</p><p>Это проект на стыке прогулки, репортажа, городской антропологии, фотографии и личного опыта эмигранта.</p></div><div class="card"><h2 class="section-title">Идея</h2><p class="section-sub">Обычная экскурсия показывает «главные точки». Меня интересуют места, которые говорят тише: дворы, подъезды, следы немецкого Breslau, послевоенные переселения, муралы, локальные бары и моменты, в которых город показывает свою настоящую структуру.</p><div class="grid-3"><div><strong>🏚 Скрытые места</strong><p>Неочевидные маршруты и микроистории.</p></div><div><strong>🎙 Гонзо-нарратив</strong><p>Субъективный авторский взгляд.</p></div><div><strong>☕ Локальный ритм</strong><p>Кофе, разговоры и повседневная жизнь.</p></div></div></div></div></section>
+      <section><div class="wrap"><h2 class="section-title">Что происходит во время прогулки?</h2><p class="section-sub">Мы не бежим от точки к точке. Мы читаем город как живой текст: архитектуру, искусство, следы истории и то, как люди живут в пространстве.</p><div class="grid-3"><div class="card"><div class="icon">🏚️</div><h3>Дворы и каменицы</h3><p>Ворота, детали, забытые пространства и послевоенные слои Вроцлава.</p></div><div class="card"><div class="icon">🎨</div><h3>Street art и муралы</h3><p>Разговоры об искусстве, памяти, ревитализации и городской энергии.</p></div><div class="card"><div class="icon">🧭</div><h3>Город как история</h3><p>История, война, миграции, локальная идентичность и будущее Вроцлава.</p></div></div></div></section>
+      <section id="offers-ru"><div class="wrap"><h2 class="section-title">Форматы</h2><p class="section-sub">Можно присоединиться к камерной группе, заказать приватный маршрут или войти в полный опыт Living Wrocław.</p><div class="offers"><article class="offer"><div class="small-title">Model 1</div><h3>Групповые прогулки</h3><p class="mini">Каждую субботу · лимит 10 человек</p><div class="price">150 zł <span class="mini">/ человек</span></div><ul class="list"><li><span class="check">✓</span><span>Nadodrze</span></li><li><span class="check">✓</span><span>Ołbin</span></li><li><span class="check">✓</span><span>Karłowice</span></li><li><span class="check">✓</span><span>Osobowice — велосипедная версия</span></li><li><span class="check">✓</span><span>Камерная группа и живой разговор</span></li></ul><a class="btn secondary" href="https://t.me/hlbtyr" target="_blank" rel="noreferrer">Уточнить дату</a></article><article class="offer"><div class="small-title">Model 2</div><h3>Приватные прогулки</h3><p class="mini">1–2 человека · 3–4 часа · индивидуальный маршрут</p><div class="price">500–700 zł <span class="mini">/ группа</span></div><ul class="list"><li><span class="check">✓</span><span>Маршрут под ваш интерес</span></li><li><span class="check">✓</span><span>Фото и лучшие визуальные точки</span></li><li><span class="check">✓</span><span>Рекомендации кафе и баров</span></li><li><span class="check">✓</span><span>История, архитектура, street art</span></li><li><span class="check">✓</span><span>Разговор, а не заученный скрипт</span></li></ul><a class="btn secondary" href="https://t.me/hlbtyr" target="_blank" rel="noreferrer">Заказать приватно</a></article><article class="offer featured"><div class="small-title">Model 3 · Premium</div><h3>Living Wrocław</h3><p class="mini">«Поживи во Вроцлаве как местный».</p><div class="price">300–500 € <span class="mini">/ опыт</span></div><ul class="list"><li><span class="check">✓</span><span>2–3 дня совместного исследования города</span></li><li><span class="check">✓</span><span>Прогулки, разговоры и локальные места</span></li><li><span class="check">✓</span><span>Приложение Tutéjszy Vibe</span></li><li><span class="check">✓</span><span>Плакат на память</span></li><li><span class="check">✓</span><span>Для номадов, фотографов и гостей Airbnb</span></li></ul><a class="btn" href="https://t.me/hlbtyr" target="_blank" rel="noreferrer">Хочу Living Wrocław</a></article></div></div></section>
+      <section id="about-ru"><div class="wrap about"><div class="avatar"><span>Pavel<br/>K.</span></div><div class="card"><h2 class="section-title">Обо мне</h2><p class="section-sub">Меня зовут Павел Кохнович. Я автор и фаундер Tutéjszy Vibe, предприниматель, тренер по теории игр и покеру, гонзо-журналист, городской наблюдатель и рассказчик.</p><p class="section-sub">Более 5 лет я живу во Вроцлаве. Я смотрю на город через архитектуру, миграции, уличное искусство, локальные истории и напряжение между прошлым и будущим. Tutéjszy Vibe — мой способ исследовать Вроцлав через прогулку, разговор, фотографию, приложение и личный опыт.</p><div class="pills"><span class="pill">🇵🇱 Polski</span><span class="pill">🇬🇧 English</span><span class="pill">🇷🇺 Русский</span><span class="pill">🇧🇾 Беларуская</span></div></div></div></section>
+      <section id="contact-ru"><div class="wrap contact"><h2>Хочешь увидеть Вроцлав изнутри?</h2><p>Напиши, какой формат тебе интересен: групповая прогулка, приватный маршрут или Living Wrocław. Я подберу маршрут, язык и ритм под тебя.</p><div class="hero-actions" style="justify-content:center;margin-top:0"><a class="btn gold" href="https://t.me/hlbtyr" target="_blank" rel="noreferrer">Telegram @hlbtyr</a><a class="btn secondary" href="https://instagram.com/tutejszyvibe" target="_blank" rel="noreferrer">Instagram @tutejszyvibe</a></div></div></section>
+    </div>
+  </main>
 
-  <h2>O&nbsp;Autorze&nbsp;/ About Me&nbsp;/ Обо мне</h2>
-  <p>Jestem Paweł Kochnowicz – założyciel Tutéjszy Vibe, przedsiębiorca, trener teorii gier i pokera, gonzo‑dziennikarz i miejski odkrywca. Od ponad 5 lat mieszkam we Wrocławiu, zgłębiam dzielnice Nadodrze i Ołbin i opowiadam o historii, architekturze, sztuce ulicznej i codziennym życiu miasta.</p>
-  <p><em>I’m Pavel Kokhnovich</em> – founder of Tutéjszy Vibe, entrepreneur, game theory and poker coach, gonzo journalist and urban explorer. For more than 5 years I’ve been living in Wrocław, exploring Nadodrze and Ołbin, telling stories of the city’s history, architecture, street art and everyday life.</p>
-  <p><em>Я — Павел Кохнович</em>, основатель Tutéjszy Vibe, предприниматель, тренер по теории игр и покеру, гонзо‑журналист и городской исследователь. Более пяти лет живу во Вроцлаве, изучаю Надодже и Ольбин, рассказываю об истории, архитектуре, уличном искусстве и жизни города.</p>
+  <footer class="footer"><div class="wrap">© Tutéjszy Vibe · gonzo walks · audio routes · posters · local Wrocław stories.</div></footer>
 
-  <div class="contact">
-    <h2>Kontakt&nbsp;/ Contact&nbsp;/ Контакты</h2>
-    <p>Telegram: <a href="https://t.me/hlbtyr">@hlbtyr</a> | Instagram: <a href="https://instagram.com/tutejszyvibe">@tutejszyvibe</a></p>
-    <p>Śledź nas na Instagramie / Follow us on Instagram / Подписывайтесь на Instagram: <strong>@tutejszyvibe</strong></p>
-  </div>
+  <script>
+    const buttons = document.querySelectorAll('[data-set-lang]');
+    const blocks = document.querySelectorAll('[data-lang]');
+    const labels = {
+      pl: {nav_idea:'Idea', nav_offers:'Oferty', nav_about:'O mnie', nav_contact:'Kontakt', nav_cta:'Napisz'},
+      en: {nav_idea:'Idea', nav_offers:'Formats', nav_about:'About', nav_contact:'Contact', nav_cta:'Write'},
+      ru: {nav_idea:'Идея', nav_offers:'Форматы', nav_about:'Обо мне', nav_contact:'Контакт', nav_cta:'Написать'}
+    };
+    function setLang(lang){
+      blocks.forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
+      buttons.forEach(btn=>btn.classList.toggle('active', btn.dataset.setLang===lang));
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-t]').forEach(el=>{ const k=el.dataset.t; if(labels[lang] && labels[lang][k]) el.textContent=labels[lang][k]; });
+    }
+    buttons.forEach(btn=>btn.addEventListener('click',()=>setLang(btn.dataset.setLang)));
+  </script>
 </body>
 </html>
